@@ -1,0 +1,15 @@
+<!--<app-input-properties [isFavorite]="post.isFavorite"></app-input-properties>-->
+<!--<app-alising-input-properties [is-favorite]="post.isFavorite"></app-alising-input-properties>-->
+<!--<app-output-properties [isFavorite]="post.isFavorite" (change)="onFavoriteChanged()" ></app-output-properties>-->
+<!--<app-passing-event-data [isFavorite]="post.isFavorite" (change)="onFavoriteChanged($event)" ></app-passing-event-data>-->
+<!--<app-my-ngcomponent>
+  <ng-container class="heading">Heading</ng-container>
+  <div class="body">
+    <h2>Body</h2>
+    <p>Content here...</p>
+  </div>
+</app-my-ngcomponent>-->
+<app-like
+  [likesCount]="tweet.likesCount"
+  [isActive]="tweet.isLiked"
+  (change)="onClickChanged($event)"></app-like>
