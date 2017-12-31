@@ -1,0 +1,29 @@
+<!-- IF -->
+
+<div *ngIf='courses.length>0'>
+  there are courses
+</div>
+<div *ngIf='courses.length == 0'>
+  not courses yet
+</div>
+
+<!-- IF ELSE -->
+<hr>
+
+<div *ngIf='courses.length >0; else noCourses'>
+  there are courses
+</div>
+<ng-template #noCourses>
+  not courses yet
+</ng-template>
+
+<hr>
+<!-- IF ELSE ng-template -->
+<div *ngIf='courses.length >0; then listCourses2 else noCourses2'></div>
+<ng-template #listCourses2>
+  there are courses
+</ng-template>
+<ng-template #noCourses2>
+  not courses yet
+</ng-template>
+

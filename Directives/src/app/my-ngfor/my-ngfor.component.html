@@ -1,0 +1,8 @@
+<button type="button" class="btn btn-info" (click)="addCourse()">Add Course</button>
+<ul>
+  <li *ngFor="let course of courses; index as i">
+    {{ i }} -- {{ course.title }}
+    <button type="button" class="btn btn-danger" (click)="removeCourse(course)">Remove Course</button>
+    <button type="button" class="btn btn-primary" (click)="changeName(course)">Change Name</button>
+  </li>
+</ul>
