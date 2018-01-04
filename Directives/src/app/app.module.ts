@@ -12,6 +12,7 @@ import { MyNgclassComponent } from './my-ngclass/my-ngclass.component';
 import { MyNgstyleComponent } from './my-ngstyle/my-ngstyle.component';
 import { TraversalOperatorComponent } from './traversal-operator/traversal-operator.component';
 import { InputFormatDirective } from './input-format.directive';
+import { ZippyComponent } from './zippy/zippy.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { InputFormatDirective } from './input-format.directive';
     MyNgclassComponent,
     MyNgstyleComponent,
     TraversalOperatorComponent,
-    InputFormatDirective
+    InputFormatDirective,
+    ZippyComponent
   ],
   imports: [
     BrowserModule
