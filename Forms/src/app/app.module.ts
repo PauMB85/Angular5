@@ -3,11 +3,13 @@ import { NgModule } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
+import { CommentFormComponent } from './template-driven/comment-form/comment-form.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CommentFormComponent
   ],
   imports: [
     BrowserModule
