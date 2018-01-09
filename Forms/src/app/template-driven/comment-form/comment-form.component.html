@@ -1,3 +1,16 @@
-<p>
-  comment-form works!
-</p>
+<form>
+  <div class="form-group">
+    <label for="firstName">Firts Name</label>
+    <input required minlength="3" maxlength="10" pattern="banana" ngModel name="firstName" #firstName="ngModel" (change)="log(firstName)" id="firstName" type="text" class="form-control">
+    <div class="alert alert-danger" *ngIf="firstName.touched && !firstName.valid">
+      <div *ngIf="firstName.errors.required">This field is required</div>
+      <div *ngIf="firstName.errors.minlength">Min length is {{ firstName.errors.minlength.requiredLength }}</div>
+      <div *ngIf="firstName.errors.pattern">The patter is not valid</div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="comment">Comment</label>
+    <textarea ngModel name="comment" id="comment" cols="30" rows="10" class="form-control"></textarea>
+  </div>
+  <button class="btn btn-primary">Submit</button>
+</form>
