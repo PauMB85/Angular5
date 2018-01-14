@@ -17,4 +17,9 @@ export class CommentFormComponent implements OnInit {
     console.log(x);
   }
 
+  submit(f) {
+    console.log(f);
+    let valueF = f.value;
+  }
+
 }
