@@ -5,12 +5,14 @@ import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { CommentFormComponent } from './template-driven/comment-form/comment-form.component';
+import { AssignmentFormComponent } from './template-driven/assignment-form/assignment-form.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    CommentFormComponent
+    CommentFormComponent,
+    AssignmentFormComponent
   ],
   imports: [
     BrowserModule,
