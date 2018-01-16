@@ -7,6 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AssignmentFormComponent implements OnInit {
 
+  categoryList = [
+    { id: 1, name: 'dev'},
+    { id: 2, name: 'test'}
+  ];
   constructor() { }
 
   ngOnInit() {
