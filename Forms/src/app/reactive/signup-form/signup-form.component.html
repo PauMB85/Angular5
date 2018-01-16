@@ -10,6 +10,7 @@
           <div *ngIf="username.errors.required">Username is required</div>
           <div *ngIf="username.errors.minlength">Min length is {{ username.errors.minlength.requiredLength }}</div>
           <div *ngIf="username.errors.cannotContainSpace">You have white spasce in the username</div>
+          <div *ngIf="username.errors.shouldBeUnique">This username is used by other </div>
         </div>
     </div>
     <div class="form-group">
