@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {PostService} from '../services/post.service';
 
 @Component({
   selector: 'app-get-data',
@@ -9,11 +9,11 @@ import {HttpClient} from '@angular/common/http';
 export class GetDataComponent implements OnInit {
 
   posts: any = [];
-  private  url = 'https://jsonplaceholder.typicode.com/posts';
-  constructor(private http: HttpClient) { }
+
+  constructor(private service: PostService) { }
 
   ngOnInit() {
-    this.http.get(this.url, {observe: 'response'})
+    this.service.getPosts()
       .subscribe(response => {
         console.log(response);
         this.posts = response.body;
@@ -23,7 +23,7 @@ export class GetDataComponent implements OnInit {
   createPost(input: HTMLInputElement) {
     const post = { title: input.value };
     input.value = '';
-    this.http.post(this.url, JSON.stringify(post), {observe: 'response'})
+    this.service.createPost(post)
       .subscribe(response => {
           console.log(response);
           post['id'] = response.body;
@@ -33,19 +33,19 @@ export class GetDataComponent implements OnInit {
 
   updatePost(post) {
     // patch is used when you update some fields of the object
-    this.http.patch(this.url + '/' + post.id, JSON.stringify(post.title), {observe: 'response'})
+    this.service.patchPost(post)
       .subscribe(response => {
         console.log(response);
       });
     // update is used, when you update all the fields of the object
-    this.http.put(this.url + '/' + post.id, JSON.stringify(post), {observe: 'response'})
+    this.service.updatePost(post)
       .subscribe(response => {
         console.log(response);
       });
   }
 
   deletePost(post) {
-    this.http.delete(this.url + '/' + post.id, {observe: 'response'})
+    this.service.deletePost(post)
       .subscribe(response => {
         console.log(response);
         const index = this.posts.indexOf(post);
