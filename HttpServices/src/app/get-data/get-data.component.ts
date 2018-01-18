@@ -10,15 +10,14 @@ export class GetDataComponent implements OnInit {
 
   posts: any = [];
   private  url = 'https://jsonplaceholder.typicode.com/posts';
-  constructor(private http: HttpClient) {
-    http.get(this.url, {observe: 'response'})
+  constructor(private http: HttpClient) { }
+
+  ngOnInit() {
+    this.http.get(this.url, {observe: 'response'})
       .subscribe(response => {
         console.log(response);
         this.posts = response.body;
       });
-  }
-
-  ngOnInit() {
   }
 
   createPost(input: HTMLInputElement) {
