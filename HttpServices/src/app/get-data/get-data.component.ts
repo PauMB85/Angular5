@@ -45,4 +45,13 @@ export class GetDataComponent implements OnInit {
       });
   }
 
+  deletePost(post) {
+    this.http.delete(this.url + '/' + post.id, {observe: 'response'})
+      .subscribe(response => {
+        console.log(response);
+        const index = this.posts.indexOf(post);
+        this.posts.splice(index, 1);
+      });
+  }
+
 }
