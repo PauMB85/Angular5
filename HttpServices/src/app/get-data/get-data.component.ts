@@ -17,19 +17,16 @@ export class GetDataComponent implements OnInit {
 
   ngOnInit() {
     this.postService.getAll()
-      .subscribe(response => {
-        console.log(response);
-        this.posts = response.body;
-      });
+      .subscribe(post => this.posts = post);
   }
 
   createPost(input: HTMLInputElement) {
     const post = { title: input.value };
     input.value = '';
     this.postService.create(post)
-      .subscribe(response => {
-          console.log(response);
-          post['id'] = response.body;
+      .subscribe(newPost => {
+          console.log(newPost);
+          post['id'] = newPost.id;
           this.posts.splice(0, 0, post);
       }, (error: AppError) => {
         if (error instanceof BadRequestError) {
@@ -43,20 +40,15 @@ export class GetDataComponent implements OnInit {
   updatePost(post) {
     // patch is used when you update some fields of the object
     this.postService.patch(post)
-      .subscribe(response => {
-        console.log(response);
-      });
+      .subscribe(patchPost => console.log(patchPost));
     // update is used, when you update all the fields of the object
     this.postService.update(post)
-      .subscribe(response => {
-        console.log(response);
-      });
+      .subscribe(updatePost => console.log(updatePost));
   }
 
   deletePost(post) {
     this.postService.delete(post.id)
-      .subscribe(response => {
-        console.log(response);
+      .subscribe(() => {
         const index = this.posts.indexOf(post);
         this.posts.splice(index, 1);
       }, (error: AppError) => {
