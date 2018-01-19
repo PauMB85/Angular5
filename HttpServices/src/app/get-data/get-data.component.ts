@@ -19,7 +19,7 @@ export class GetDataComponent implements OnInit {
         this.posts = response.body;
       }, error => {
         console.log(error);
-        alert('An unexpected error occurred');
+        alert('An unexpected error occurred, get');
       });
   }
 
@@ -31,6 +31,9 @@ export class GetDataComponent implements OnInit {
           console.log(response);
           post['id'] = response.body;
           this.posts.splice(0, 0, post);
+      }, error => {
+        console.log(error);
+        alert('An unexpected error occurred, post');
       });
   }
 
@@ -39,11 +42,17 @@ export class GetDataComponent implements OnInit {
     this.service.patchPost(post)
       .subscribe(response => {
         console.log(response);
+      }, error => {
+        console.log(error);
+        alert('An unexpected error occurred, patch');
       });
     // update is used, when you update all the fields of the object
     this.service.updatePost(post)
       .subscribe(response => {
         console.log(response);
+      }, error => {
+        console.log(error);
+        alert('An unexpected error occurred, update');
       });
   }
 
@@ -53,6 +62,9 @@ export class GetDataComponent implements OnInit {
         console.log(response);
         const index = this.posts.indexOf(post);
         this.posts.splice(index, 1);
+      }, error => {
+        console.log(error);
+        alert('An unexpected error occurred, delete');
       });
   }
 
