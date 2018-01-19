@@ -57,14 +57,18 @@ export class GetDataComponent implements OnInit {
   }
 
   deletePost(post) {
-    this.service.deletePost(post)
+    this.service.deletePost(345)
       .subscribe(response => {
         console.log(response);
         const index = this.posts.indexOf(post);
         this.posts.splice(index, 1);
-      }, error => {
-        console.log(error);
-        alert('An unexpected error occurred, delete');
+      }, (error: Response) => {
+        if (error.status === 404) {
+          alert('This post has already been deleted');
+        } else {
+          console.log(error);
+          alert('An unexpected error occurred, delete');
+        }
       });
   }
 
