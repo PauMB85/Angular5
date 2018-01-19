@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {PostService} from '../services/post.service';
+import {AppError} from '../commons/errors/app-error';
+import {NotFoundError} from '../commons/errors/not-found-error';
+import {BadRequestError} from '../commons/errors/bad-request-error';
 
 @Component({
   selector: 'app-get-data',
@@ -31,9 +34,13 @@ export class GetDataComponent implements OnInit {
           console.log(response);
           post['id'] = response.body;
           this.posts.splice(0, 0, post);
-      }, error => {
-        console.log(error);
-        alert('An unexpected error occurred, post');
+      }, (error: AppError) => {
+        if (error instanceof BadRequestError) {
+          alert('dont create the post');
+        } else {
+          console.log(error);
+          alert('An unexpected error occurred, post');
+        }
       });
   }
 
@@ -62,8 +69,8 @@ export class GetDataComponent implements OnInit {
         console.log(response);
         const index = this.posts.indexOf(post);
         this.posts.splice(index, 1);
-      }, (error: Response) => {
-        if (error.status === 404) {
+      }, (error: AppError) => {
+        if (error instanceof NotFoundError) {
           alert('This post has already been deleted');
         } else {
           console.log(error);
