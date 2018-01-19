@@ -13,10 +13,10 @@ export class GetDataComponent implements OnInit {
 
   posts: any = [];
 
-  constructor(private service: PostService) { }
+  constructor(private postService: PostService) { }
 
   ngOnInit() {
-    this.service.getPosts()
+    this.postService.getAll()
       .subscribe(response => {
         console.log(response);
         this.posts = response.body;
@@ -26,7 +26,7 @@ export class GetDataComponent implements OnInit {
   createPost(input: HTMLInputElement) {
     const post = { title: input.value };
     input.value = '';
-    this.service.createPost(post)
+    this.postService.create(post)
       .subscribe(response => {
           console.log(response);
           post['id'] = response.body;
@@ -42,19 +42,19 @@ export class GetDataComponent implements OnInit {
 
   updatePost(post) {
     // patch is used when you update some fields of the object
-    this.service.patchPost(post)
+    this.postService.patch(post)
       .subscribe(response => {
         console.log(response);
       });
     // update is used, when you update all the fields of the object
-    this.service.updatePost(post)
+    this.postService.update(post)
       .subscribe(response => {
         console.log(response);
       });
   }
 
   deletePost(post) {
-    this.service.deletePost(345)
+    this.postService.delete(post.id)
       .subscribe(response => {
         console.log(response);
         const index = this.posts.indexOf(post);
