@@ -20,9 +20,6 @@ export class GetDataComponent implements OnInit {
       .subscribe(response => {
         console.log(response);
         this.posts = response.body;
-      }, error => {
-        console.log(error);
-        alert('An unexpected error occurred, get');
       });
   }
 
@@ -38,8 +35,7 @@ export class GetDataComponent implements OnInit {
         if (error instanceof BadRequestError) {
           alert('dont create the post');
         } else {
-          console.log(error);
-          alert('An unexpected error occurred, post');
+          throw error;
         }
       });
   }
@@ -49,17 +45,11 @@ export class GetDataComponent implements OnInit {
     this.service.patchPost(post)
       .subscribe(response => {
         console.log(response);
-      }, error => {
-        console.log(error);
-        alert('An unexpected error occurred, patch');
       });
     // update is used, when you update all the fields of the object
     this.service.updatePost(post)
       .subscribe(response => {
         console.log(response);
-      }, error => {
-        console.log(error);
-        alert('An unexpected error occurred, update');
       });
   }
 
@@ -73,8 +63,7 @@ export class GetDataComponent implements OnInit {
         if (error instanceof NotFoundError) {
           alert('This post has already been deleted');
         } else {
-          console.log(error);
-          alert('An unexpected error occurred, delete');
+          throw error;
         }
       });
   }
