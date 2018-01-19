@@ -7,12 +7,15 @@ import { GetDataComponent } from './get-data/get-data.component';
 import {HttpClientModule} from '@angular/common/http';
 import {PostService} from './services/post.service';
 import {AppErrorHandler} from './commons/errors/app-error-handler';
+import { FollowersComponent } from './followers/followers.component';
+import {FollowersService} from './services/followers.service';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    GetDataComponent
+    GetDataComponent,
+    FollowersComponent
   ],
   imports: [
     BrowserModule,
@@ -20,7 +23,8 @@ import {AppErrorHandler} from './commons/errors/app-error-handler';
   ],
   providers: [
     PostService,
-    { provide: ErrorHandler, useClass: AppErrorHandler}
+    { provide: ErrorHandler, useClass: AppErrorHandler},
+    FollowersService
   ],
   bootstrap: [AppComponent]
 })
