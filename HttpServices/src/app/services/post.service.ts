@@ -14,34 +14,37 @@ export class PostService {
   constructor(private http: HttpClient) { }
 
   getPosts() {
-    return this.http.get(this.url, {observe: 'response'});
+    return this.http.get(this.url, {observe: 'response'})
+      .catch(this.handlerError);
   }
 
   createPost(post) {
    return this.http.post(this.url, JSON.stringify(post), {observe: 'response'})
-     .catch((err: Response) => {
-       if (err.status === 400) {
-         return Observable.throw(new BadRequestError());
-       }
-       return Observable.throw(new AppError(err));
-     });
+     .catch(this.handlerError);
   }
 
   patchPost(post) {
-    return this.http.patch(this.url + '/' + post.id, JSON.stringify(post.title), {observe: 'response'});
+    return this.http.patch(this.url + '/' + post.id, JSON.stringify(post.title), {observe: 'response'})
+      .catch(this.handlerError);
   }
 
   updatePost(post) {
-    return this.http.put(this.url + '/' + post.id, JSON.stringify(post), {observe: 'response'});
+    return this.http.put(this.url + '/' + post.id, JSON.stringify(post), {observe: 'response'})
+      .catch(this.handlerError);
   }
 
   deletePost(post) {
     return this.http.delete(this.url + '/' + post.id, {observe: 'response'})
-      .catch((err: Response) => {
-        if (err.status === 404) {
-          return Observable.throw(new NotFoundError());
-        }
-        return Observable.throw(new AppError(err));
-      });
+      .catch(this.handlerError);
+  }
+
+  private handlerError(err: Response) {
+    if (err.status === 400) {
+      return Observable.throw(new BadRequestError());
+    }
+    if (err.status === 404) {
+      return Observable.throw(new NotFoundError());
+    }
+    return Observable.throw(new AppError(err));
   }
 }
