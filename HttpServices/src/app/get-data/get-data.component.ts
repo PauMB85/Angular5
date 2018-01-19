@@ -17,6 +17,9 @@ export class GetDataComponent implements OnInit {
       .subscribe(response => {
         console.log(response);
         this.posts = response.body;
+      }, error => {
+        console.log(error);
+        alert('An unexpected error occurred');
       });
   }
 

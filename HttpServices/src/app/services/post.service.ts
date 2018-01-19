@@ -4,7 +4,7 @@ import {HttpClient} from '@angular/common/http';
 @Injectable()
 export class PostService {
 
-  private  url = 'https://jsonplaceholder.typicode.com/posts';
+  private  url = 'https://abcdjsonplaceholder.typicode.com/posts';
   constructor(private http: HttpClient) { }
 
   getPosts() {
