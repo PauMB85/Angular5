@@ -14,6 +14,7 @@ import {GithubProfileComponent} from './components/github-profile/github-profile
 import {GithubProfileService} from './services/github-profile.service';
 import {RouterModule} from '@angular/router';
 import {NotFoundComponent} from './components/not-found/not-found.component';
+import {PostService} from './services/post.service';
 
 
 @NgModule({
@@ -39,7 +40,7 @@ import {NotFoundComponent} from './components/not-found/not-found.component';
     )
   ],
   providers: [
-    PostsComponent,
+    PostService,
     { provide: ErrorHandler, useClass: AppErrorHandler},
     GithubFollowersService,
     GithubProfileService
